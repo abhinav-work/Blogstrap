@@ -1,0 +1,176 @@
+<%- include('../layouts/head.ejs') %>
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+<!-- Custom icon font-->
+<link rel="stylesheet" href="css/fontastic.css">
+<!-- Google fonts - Open Sans-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+<!-- Fancybox-->
+<link rel="stylesheet" href="vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="favicon.png">
+<!-- Tweaks for older IEs-->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<%- include('../layouts/nav.ejs') %>
+<body>
+    <!-- Hero Section-->
+    <section style="background: url(img/hero.jpg); background-size: cover; background-position: center center"
+        class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <h1>On the average, five times as many people read the headline as read the body copy.
+                    When you have written your headline you have spent eighty cents out of your dollar!</h1><a href="/"
+                        class="hero-link">Discover More</a>
+                </div>
+            </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
+        </div>
+    </section>
+    <!-- Intro Section-->
+    <section class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2 class="h3">What's a legit blog?</h2>
+                    <p class="text-big"> " If you've spent any time <strong>trolling</strong> the blogo-sphere, you've
+                        probably noticed a peculiar literary trend: the pervasive habit of writers inexplicably placing exclamation points
+                        at the end of otherwise unremarkable sentences. Sort of like this! This is done to suggest an
+                        ironic detachment from the writing of an expository sentence! It's supposed to signify that the
+                        writer is self-aware! And this is idiotic. It's the saddest kind of failure. F. Scott Fitzgerald
+                        believed inserting exclamation points was the literary equivalent of an author laughing at his
+                        own jokes, but that's not the case in the modern age; now, the exclamation point signifies
+                        creative confusion. All it illustrates is that even the writer can't tell if what they're
+                        creating is supposed to be meaningful, frivolous, or cruel. It's an attempt to insert humor
+                        where none exists, on the off chance that a potential reader will only be pleased if they
+                        suspect they're being entertained. Of course, the reader isn't really sure, either. They just
+                        want to know when they're supposed to pretend to be amused. All those extraneous exclamation
+                        points are like little splatters of canned laughter: They represent the "form of funny," which
+                        is more easily understood (and more easily constructed) than authentic funniness. "
+                                                                    <strong>   <span style="font-size: medium;"> - Chuck Klosterman </span>   </strong>   
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="featured-posts no-padding-top">
+        <div class="container">
+            <!-- Post-->
+            <% if(blogs.length>2) { %>
+                <% for(blog=0 ; blog<(blogs.length) && blog < 3 ; blog++ ) { %>   
+                        <div class="row d-flex align-items-stretch" id="home-Posts"> 
+                             <% if ((blog+1)%2==0) { %>
+                                <div  class="image col-lg-5"><img src="<%= blogs[blog].image_URL%>" alt="..."></div>
+                             <% } %>
+                            <a href="/blogs/<%= blogs[blog]._id %>" style="text-decoration: none; color:black;">
+                            <div class="text col-lg-7" style="margin-top: 0px;">
+                                <div class="text-inner d-flex align-items-center">
+                                    <div class="content">
+                                        <header class="post-header">
+                                            <div class="category"></div>
+                                                <h2 class="h4"><%= blogs[blog].title%></h2>
+                                            
+                                        </header>
+                                        <p><%= blogs[blog].description.split(". ", 2).join(".") %>...</p>
+                                        <footer class="post-footer d-flex align-items-center"><a href="#"
+                                                class="author d-flex align-items-center flex-wrap">
+                                                <div class="title"><span><%= blogs[blog].author_name%></span></div>
+                                            </a>
+                                            <div class="date"><i class="icon-clock"></i><%= blogs[blog].updated_at.toString().substr(blogs[blog].updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %></div>
+                                            <div class="comments"><i
+                                                    class="icon-comment"></i><%= blogs[blog].comments%></div>
+                                        </footer>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                             <% if ((blog+1)%2!=0) { %>
+                                <div class="image col-lg-5"><img src="<%= blogs[blog].image_URL%>" alt="..."></div>
+                            <% } %>
+                
+                        </div>
+                        
+                <% } %>
+           <% } %>
+        </div>
+    </section>
+    <!-- Divider Section-->
+    <section style="background: url(img/divider-bg.jpg); background-size: cover; background-position: center bottom"
+        class="divider">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h2>"If you want to be a writer, you must do two things above all: Read a lot and write a lot."</h2> <a
+                        href="/" class="hero-link">View More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Latest Posts -->
+    <section class="latest-posts">
+        <div class="container">
+            <header>
+                <h2>Latest posts from the Blogstrap</h2>
+                <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </header>
+            <div class="row">
+                 <% if(blogs.sort(function(a, b){return b.created_at - a.created_at}).length>2) { %>
+                      <% for(blog=0 ; blog<(blogs.length) && blog < 3 ; blog++ ) { %>
+                        <div class="post col-md-4"  id="home-Posts">
+                            <div class="post-thumbnail"><a href="/blogs/<%= blogs[blog]._id %>"><img src="<%= blogs[blog].image_URL %>" alt="..."
+                                        class="img-fluid"></a></div>
+                            <div class="post-details">
+                                <div class="post-meta d-flex justify-content-between">
+                                    <div class="date"><%= blogs[blog].updated_at.toString().substr(blogs[blog].updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" | ") %></div>
+                                    <div class="category"><a href="#"></a></div>
+                                </div><a href="/blogs/<%= blogs[blog]._id %>">
+                                    <h3 class="h4"><%= blogs[blog].title%></h3>
+                                </a>
+                                <p class="text-muted"><%= blogs[blog].description.split(".", 3).join(". ") %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Newsletter Section-->
+    <section class="newsletter no-padding-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Subscribe to Newsletter</h2>
+                    <p class="text-big">Get the latest and greatest of the blogs just at your mailbox.</p>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-holder">
+                        <form action="#">
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" placeholder="Type your email address">
+                                <button type="submit" class="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('../layouts/foot.ejs') %>
+
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
+    <script src="js/front.js"></script>

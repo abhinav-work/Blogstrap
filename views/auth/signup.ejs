@@ -1,0 +1,87 @@
+   <%- include('../layouts/head.ejs') %>
+   <%- include('../layouts/nav.ejs') %>
+
+      <!-- EDIT USER -->
+      <!-- Icons font CSS-->
+      <link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+      <link href="/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+      <!-- Font special for pages-->
+      <link
+          href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+      <!-- Vendor CSS-->
+      <link href="/vendor/select2/selects2.min.css" rel="stylesheet" media="all">
+      <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+      <!-- Main CSS-->
+      <link href="/style/mainSignup.css" rel="stylesheet" media="all">
+
+      <!--===============================================================================================-->
+
+
+        <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins" style="padding-top: 70px;">
+            <div class="wrapper wrapper--960" style="width: 70%">
+                <div class="card card-3">
+                    <div class="card-heading"></div>
+                    <div class="card-body">
+                        <h2 class="title">Registration Info</h2>
+                            <form class="login-form" action="/signup" method="POST">
+                                <% if(errorMessage) { %>
+                                     <div class="users-message users-message--error" style="color: blue; background-color: red;"> <%= errorMessage %> </div>
+                                <% } %>
+                            
+                            <div class="input-group">
+                                <input class="input--style-3" type="text" placeholder="First Name" name="nameF" value="<%= nameF%>"> 
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-3" type="text" placeholder="Last Name" name="nameL" value="<%= nameL%>">
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-3<%= validationErr.find(e=> e.param==='email') ? ' invalid' : '' %>" type="email" placeholder="Email" name="email" value="<%= emailS%>">
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-3" type="number" placeholder="Age" name="age" value="<%=age%>">
+                            </div>
+                            
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search"> 
+                                    <select name="gender" id="gender">
+                                        <option disabled="disabled" selected="selected" hidden= "hidden" >Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <textarea class="<input--style-3<%= validationErr.find(e=> e.param==='biography') ? ' invalid' : '' %>" type="text" name="biography" style="border:none; outline: none; width: 100%" placeholder="Biography" rows="5" cols="40"><%= biography %></textarea>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-3<%= validationErr.find(e=> e.param==='password') ? ' invalid' : '' %>" type="password" placeholder="Password" name="password" id="password" value=<%= password1 %>>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-3<%= validationErr.find(e=> e.param==='confirmpassword') ? ' invalid' : '' %>" type="password" placeholder="Confirm Password" name="confirmpassword" id="password" value=<%= password2 %>>
+                            </div>
+                            <div class="p-t-10">
+                                 <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jquery JS-->
+        <script src="/vendor/jquery/jquery.mins.js"></script>
+        <!-- Vendor JS-->
+        <script src="/vendor/select2/selects2.min.js"></script>
+        <script src="/vendor/datepicker/moment.min.js"></script>
+        <script src="/vendor/datepicker/daterangepicker.js"></script>
+
+        <!-- Main JS-->
+        <script src="js/global.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,20 @@
+.login-form{
+    width: 10rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+.div-form {
+    margin: 1rem 0;
+}
+
+.div-form label,
+.div-form input{
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+.div-form input:focus {
+    outline-color: #00695c
+}

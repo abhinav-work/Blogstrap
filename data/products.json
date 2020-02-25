@@ -1,0 +1,23 @@
+[{"id":"0.06163062798255603",
+    "title":"Apple iPhone Xr ",
+    "imageURL":"https://cnet1.cbsistatic.com/img/VeMe_pYoZoRuzSVP3LeMLR-_8G4=/980x551/2018/10/22/5a938c7a-f6f0-46c5-acb0-a1bcd9994747/110-iphone-xr-review.jpg ",
+    "imageURL2":"https://i2.wp.com/9to5mac.com/wp-content/uploads/sites/6/2018/10/iPhone-XR-Worst-Features1.jpg?resize=2000%2C0&quality=82&strip=all&ssl=1 ",
+    "imageURL3":"https://cnet1.cbsistatic.com/img/yIxhl3GkCaDc4qgVoLY--1tkcag=/980x551/2018/10/22/84c70ade-02dd-4392-9326-e1b8ec53ab41/107-iphone-xr-review.jpg ",
+    "description":" Latest mid range iPhone  ",
+    "price":"64999"},
+    {
+        "id": "0.6741566435948467",
+        "title": "Samsung Note 10 Pro",
+        "imageURL": "https://cdn3.cnet.com/img/3reTMd8dLZwSULHWwrfa93ksyjs=/980x551/2019/08/02/9bfc63b6-38d8-4711-812e-3fc54df028ee/samsung-galaxy-note-10-note-10-plus-35.jpg",
+        "imageURL2": "https://cdn4.cnet.com/img/-U2R76EMuQJ3_F-ugnn6Of2ANBQ=/980x551/2019/08/02/575c3fac-1578-45cd-b4cc-8afed70b815e/samsung-galaxy-note-10-note-10-plus-4-2.jpg",
+        "imageURL3": "https://cnet2.cbsistatic.com/img/khp-Li4f28pK0CsC3Oq97jxuXaY=/980x551/2019/08/17/615a69a0-d587-40c6-aaed-68492f4bc893/samsung-galaxy-note-10-plus-6.jpg",
+        "description": "Samsung's latest offering ",
+        "price": "69999"
+    },{
+        "id":"0.8920327916287125",
+        "title":"Apple iPhone Xs Max   ",
+        "imageURL":"https://cnet1.cbsistatic.com/img/hlEWIJZHlB4Mu6YjjfKN-qgv0hc=/980x551/2018/09/17/37acfbfe-95c2-42cb-8276-de1de88fc49d/35-iphone-xs-max.jpg   ",
+        "imageURL2":"https://cnet1.cbsistatic.com/img/h6USHD838St3_ByiD1WjsJGkRV8=/980x551/2018/09/17/d03d3df0-0655-410d-982b-df202e6f7d5a/01-iphone-xs-max.jpg   ",
+        "imageURL3":"https://cnet1.cbsistatic.com/img/7jCtQUfxNjv8MNclaCn-vWtBbsA=/980x551/2018/09/17/b697129a-182f-463a-bf78-609f6c93f2d0/25-iphone-xs-max.jpg   ",
+        "description":"Apple's Flagship",
+        "price":"99999"}]

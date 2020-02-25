@@ -1,0 +1,35 @@
+ <nav aria-label="Page navigation example">
+     <ul class="pagination pagination-template d-flex justify-content-center">
+
+         <% if (previousPage!==0) { %>
+            <li class="page-item"><a href="?page=<%= previousPage %>" class="page-link"> <i class="fa fa-angle-left"> </i> </a> </li>
+         <%} else { %>
+            <li class="page-item"><a href="?page=<%= currentPage %>" class="page-link"> <i class="fa fa-angle-left"> </i></a> </li>
+         <% } %>
+         
+         <% if(currentPage !== 1 && previousPage !== 1) { %>
+                   <li class="page-item"><a href="?page=1" class="page-link"> 1 </a> </li>
+         <% } %>
+
+         <% if (hasPreviousPage) { %>
+             <li class="page-item"><a href="?page=<%= previousPage%>" class="page-link"><%= previousPage %></a></li>
+         <% } %>
+
+         <li class="page-item"><a href="?page=<%= currentPage %>" class="page-link active"> <%= currentPage %> </a> </li>
+        
+         <% if (hasNextPage) { %>
+            <li class="page-item"><a href="?page=<%= nextPage%>" class="page-link"> <%= nextPage %></a></li>
+         <% } %>
+
+         <% if (currentPage!==lastPage) { %>
+            <% if(lastPage!==nextPage) { %>
+                <li class="page-item"><a href="?page=<%= lastPage%>" class="page-link"> <%= lastPage %></a></li>
+            <% } %>
+            <li class="page-item"><a href="?page=<%= nextPage %>" class="page-link"> <i class="fa fa-angle-right"> </i> </a> </li>
+         <% } else { %>
+            <li class="page-item"><a href="?page=<%= currentPage %>" class="page-link"> <i class="fa fa-angle-right"> </i> </a> </li>
+         <% } %>
+     </ul>
+ </nav>
+
+

@@ -1,0 +1,90 @@
+<%- include('../layouts/head.ejs') %>
+<%- include('../layouts/nav.ejs') %>
+
+  <!-- POSTS -->
+  <!-- Font special for pages-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+      rel="stylesheet">
+
+  <!-- Main CSS-->
+  <link href="/style/Edit-Post.css" rel="stylesheet" media="all">
+
+<main style="padding:0%">
+  <form action="/admin/<%= editing ? 'edit-blog' : 'add-blog' %>" method="POST">
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w960" style="width: 90%">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title"><%= editing? 'Edit' : 'Add a'%> Blog</h2>
+                </div>
+                <div class="card-body">
+                     <% if(errorMessage) { %>
+                     <div class="user-message user-message--error"> <%= errorMessage %> </div>
+                     <% } %>
+                  
+                        <div class="form-row">
+                            <div class="name">Title</div>
+                            <div class="value">
+                                <input class="input--style-6 <%= validationErr.find(e=> e.param==='title') ? 'invalid' : '' %>" type="text" name="title" placeholder="Title" id="title" value="<% if(editing || hasError) { %><%= blog.title %> <% } %>" type="text" name="title" value="title">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Image URL</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6 <%= validationErr.find(e=> e.param==='image_URL') ? 'invalid' : '' %>" type="text" name="image_URL" placeholder="Image URL" value="<% if(editing || hasError) { %><%= blog.image_URL %> <% } %>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Message</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <textarea
+                                        class="textarea--style-6 <%= validationErr.find(e=> e.param==='description') ? 'invalid' : '' %>" name="description" style="padding-left: 20px;" placeholder="Blog Content"><%= (editing || hasError) ? blog.description : '' %></textarea>
+                                </div>
+                            </div>
+                        </div>        
+                         <div class="form-row">
+                             <div class="name">Quote</div>
+                             <div class="value">
+                                 <div class="input-group">
+                                     <textarea
+                                         class="textarea--style-6 <%= validationErr.find(e=> e.param==='quote') ? 'invalid' : '' %>"
+                                         name="quote" style="padding-left: 20px;"
+                                         placeholder="Quote"><%= (editing || hasError) ? blog.quote : '' %></textarea>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="form-row">
+                             <div class="name">Quote Author</div>
+                             <div class="value">
+                                 <div class="input-group">
+                                     <input
+                                         class="input--style-6 <%= validationErr.find(e=> e.param==='quoteAuthor') ? 'invalid' : '' %>"
+                                         type="text" name="quoteAuthor" placeholder="Quote Author"
+                                         value="<% if(editing || hasError) { %><%= blog.quoteAuthor %> <% } %>">
+                                 </div>
+                             </div>
+                         </div>
+                </div>
+                <div class="card-footer">
+                     <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                      <input type="hidden" name="blogID" value="<%= (editing || hasError) ? blog._id : '' %>">
+                    <button class="btn btn--radius-2 btn--blue-2" type="submit" ><%= (editing || hasError) ? 'Update' : 'Post' %> Blog</button>
+                </div>
+           
+            </div>
+        </div>
+    </div>
+     </form>
+
+    <!-- Jquery JS-->
+    <script src="/vendor/jquery/jquery.min-editBlog.js"></script>
+
+
+    <!-- Main JS-->
+    <script src="/js/global-EditBlog.js"></script>
+
+
+</main>

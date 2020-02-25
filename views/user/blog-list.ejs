@@ -1,0 +1,54 @@
+<%- include('../layouts/head.ejs') %>
+   <%- include('../layouts/nav.ejs') %>  
+  <div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-8">  
+                        <div class="container">
+                        <div class="row">
+                        <!-- post -->
+                        <% if(blogs.sort(function(a, b){return b.updated_at - a.updated_at}).length > 0) { %>
+                            <% for (blog of blogs) { %>
+  
+                                <div class="post col-xl-6">
+                                    <span id="box-shadow">
+                                         <a href="/blogs/<%= blog._id %>" style="text-decoration: none; color:black;">
+                                    <div class="post-thumbnail"><img src="<%= blog.image_URL%>" alt="..." class="img-fluid"></div>
+                                    <div class="post-details">
+                                        <div class="post-meta d-flex justify-content-between">
+                                            <div class="date meta-last"> 
+                                            </div>
+                                            <div class="category">  </div>
+                                        </div>
+                                            <h3 class="h4"> <%= blog.title %></h3>
+                                        <p class="text-muted"> <%= blog.description.split(".", 1)%> </p>
+                                        <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                                             <div class="title" style="font-size: 14px;"><span> <%= blog.author_name%></span></div>
+
+                                            <div class="date"><i class="icon-clock"></i><%= blog.updated_at.toString().substr(blog.updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %>
+                                            </div>
+                                            <div class="comments meta-last"><i class="like-icon"></i> <span style="margin-left: 12px; margin-top: 2px;"> <%= blog.likes.totalQty %> </span>
+                                            </div>
+                                        </footer>
+                                    </div>
+                                     </a>
+                                    </span>
+                                </div>
+                               <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                
+                            <% } %>
+                         <% } else { %>
+                                <h1> No Blogs Yet! </h1>
+                         <% } %>
+          </div>
+          
+                      <!-- Pagination -->
+                      <%- include('../layouts/pagination.ejs', {hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage, currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage}) %>
+          </div>
+    </main>
+    <!--Side Bar -->
+     <%- include('../layouts/widget-bar.ejs', {blogs: blogs}) %>
+     
+     </div>
+     </div>
+<%- include('../layouts/foot.ejs') %> 

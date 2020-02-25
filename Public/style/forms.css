@@ -1,0 +1,78 @@
+.product-form{
+             flex-wrap: wrap;
+             width: 20rem;
+             max-width: 100%;
+             margin: auto;
+             text-align: center;
+         }
+         .div-form{
+             margin: 1rem 0;
+         }
+         .div-form label,
+         .div-form input,
+         .div-form textarea{
+            display: block;
+            width:100%;
+            margin-bottom: 0.25rem;
+         }
+         input,
+         textarea{
+             border: 1px solid #09b6a2;
+             font: inherit;
+             border-radius: 2px; 
+         }
+         input:focus,
+         textarea:focus{
+             outline-color: #00695c
+         }
+         .add-button{
+             font: inherit;
+             border: 1px solid #3700ff;
+             color:#3700ff;
+             background-color: white;
+             border-radius: 3px;
+             cursor: pointer;
+         }
+         .add-button:hover,
+         .add-button:active{
+             background-color: #3700ff;
+             color: white;
+         }
+         .logout-button{
+             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+             font-size: 12px;
+             border: 1px solid #00695c;
+             color: #00695c;
+             background: white;
+             border-radius: 3px;
+             cursor: pointer;
+             
+
+         }
+
+         .logout-button:hover,
+         .logout-button:active {
+             background-color: #00695c;
+             color: white;
+         }
+         .centered {
+             text-align: center;
+         }
+         .div-form input.invalid,    textarea.invalid{
+             border-color: red;
+         }
+         .user-message {
+             margin: auto;
+             width: 30%;
+             border: 1px solid #4771fa;
+             border-radius: 3px;
+             padding: 0.5rem;
+             background: rgb(110, 110, 243);
+             text-align: center;
+         }
+
+         .user-message--error {
+
+             border: 1px solid red;
+             background: rgb(241, 68, 68);
+         }

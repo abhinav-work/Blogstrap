@@ -1,0 +1,172 @@
+.grid{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    height: 360px;
+    width: 300px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);   
+    margin: 2% 4%; 
+}
+
+.grid:hover{
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1); 
+}
+
+.slideshow_container {
+  max-width: 1000px;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;  
+  margin: auto;
+}
+.card_header,
+.card_product_content{
+    padding: 1rem;
+}
+.centered{
+    text-align: center;
+}
+.centered h1,h2,p{
+  font-size: 20px;
+}
+.centered h2,p{
+  font-size: 80%;
+}
+.card_product_item h1,
+.card_product_item h2,
+.card_product_item p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 75%;
+    margin:0;
+}
+.card_product_item h1{
+   font-size: 100%;
+}
+.card_product_image{
+    width: 100%;
+}
+.card_product_image img{
+    width: 100%;
+}
+.detail_product_image{
+    display: none;
+    height: 400;
+    width: 300;
+}
+.detail_product_image img{
+   width: 60%;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 12px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 2px 2px 0;
+  user-select: none;
+}
+
+.prev {
+  left: 0;
+  border-radius: 1px 0 0 1px;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.numbertext {
+  color: black;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 0;
+  right: 12%;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0px 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.dot:hover,
+.dot:active, 
+.dot.active{
+  background-color: #717171;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.card_product_content{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.card_actions{
+    text-align: center;
+}
+.card_actions btn{
+    margin: 0 0.025rem;
+}
+button{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 12px;
+    border: 1px solid #00695c;
+    color: #00695c;
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+    
+}
+button:hover,
+button:active{
+    background-color: #00695c;
+    color:white;
+}
+.pagination{
+    margin-top: 2rem;
+    text-align: center;
+}
+.pagination a{
+    text-decoration: none;
+    color: #00695c;
+    padding: 0.5rem;
+    border: 1px solid #00695c;
+    margin: 0 1rem;
+}
+.pagination a:hover,
+.pagination a.active,
+.pagination a.active{
+    background: #00695c;
+    color: white;
+}

@@ -1,0 +1,32 @@
+<aside class="col-lg-4" style="padding-bottom: 10px;">
+    <!-- Widget [Search Bar Widget]-->
+
+    <!-- Widget [Latest Posts Widget]        -->
+    <div class="widget latest-posts" >
+        <header>
+            <h3 class="h6"> <%= admin.toString()==="true" ? 'Your' : '' %> Most Interactive Posts</h3>
+        </header>
+        <div class="blog-posts">
+            <% if (blogs.sort(function(a, b){return b.comments - a.comments}).length > 0) { %>
+            <% for(blog=0; blog<(blogs.length) && blog<3 ; blog++) { %>
+            <a href="/blogs/<%= blogs[blog]._id %>" style="text-decoration: none; color:black;" id="drop-shadow">
+                <div class="item d-flex align-items-center" style="margin-bottom: 10px;">
+                    <div class="image"><img  style="margin-top: 10px;" src="<%= blogs[blog].image_URL %>" alt="..." class="img-fluid"></div>
+                    <div class="title"><strong style="color: rgba(0, 0, 0, 0.363); font-size: 16px; font-weight:700; margin-top:0px;margin-bottom: 0px;"> <%= blogs[blog].title%> </strong>
+                        <div class="d-flex align-items-center">
+                            <div class="views"><i class="like-icon" style="margin-bottom: 1px;"></i>
+                                <span style="margin-left: 12px; font-size: 14px;"> <%= blogs[blog].likes.totalQty %>
+                                </span>
+                            </div>
+                            <div class="comments"><i class="icon-comment" style="font-size: 14px;"></i> <span style=" font-size: 14px;"> <%= blogs[blog].comments %> </span> </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% } %>
+            <% } else { %>
+            No Latest Posts to display
+            <% } %>
+        </div>
+    </div>
+</aside>
