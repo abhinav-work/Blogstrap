@@ -4,7 +4,8 @@
   "description": "first website",
   "main": "app.js",
   "scripts": {
-    "start": "node app js"
+    "start": "node app js",
+    "heroku-postbuild": "npm install"
   },
   "author": "",
   "license": "ISC",

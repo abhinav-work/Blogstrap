@@ -115,7 +115,13 @@ app.use((error, req, res, next) => {
 //     app.listen(port, () => console.log("Server is running HOT @" + port + " !!!!"));
 // })
 
-mongoose.connect(MONGODB_URL, {
+if(process.env.NODE_ENV === 'production')
+{
+    app.use(express.static('/build'));
+
+}
+
+mongoose.connect(process.env.MONGODB_URI || MONGODB_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
