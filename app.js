@@ -121,7 +121,7 @@ if(process.env.NODE_ENV === 'production')
 
 }
 
-mongoose.connect(process.env.MONGODB_URI || MONGODB_URL, {
+mongoose.connect(MONGODB_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
