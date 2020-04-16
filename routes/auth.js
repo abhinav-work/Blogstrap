@@ -42,6 +42,7 @@ router.post('/signup',
                                             if (value == undefined) {
                                                 throw new Error('Select a Gender');
                                             }
+                                            return true
                                         }),
                             body('password', 'Password must be Alphanumerice in nature')
                                     .isLength({min: 5})
