@@ -26,7 +26,7 @@ router.post('/add-blog',
                                     .isLength({ min: 3 })
                                     .isString(),
                                // body('price', 'Enter a valid Price').isFloat(),
-                                body('description', 'Enter a valid Description').isLength({ min: 5, max: 10000 }).isString()
+                                body('description', 'Enter a valid Description under 10,000 word limit').isLength({ min: 5, max: 10000 }).isString()
                             ], 
                             isAuth, productsController.postAddBlog);
 router.get('/edit-blog/:blogID', isAuth, productsController.getEditBlog);
