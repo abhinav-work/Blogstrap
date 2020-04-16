@@ -46,7 +46,7 @@ router.post('/signup',
                                         }),
                             body('password', 'Password must be Alphanumerice in nature')
                                     .isLength({min: 5})
-                                    //.isAlphanumeric()
+                                    .isAlphanumeric()
                                     .trim(),
                             body('confirmpassword').trim().custom((value, { req }) => {
                                 if(value !== req.body.password)
