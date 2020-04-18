@@ -17,6 +17,7 @@
     "connect-mongodb-session": "^2.2.0",
     "csurf": "^1.10.0",
     "ejs": "^2.6.2",
+    "exec": "^0.2.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "express-validator": "^6.2.0",
@@ -28,6 +29,7 @@
     "nodemon": "^2.0.2",
     "pdfkit": "^0.10.0",
     "stripe": "^7.10.0",
-    "valid-url": "^1.0.9"
+    "valid-url": "^1.0.9",
+    "yarnpkg": "^0.15.1"
   }
 }
