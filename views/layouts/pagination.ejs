@@ -21,7 +21,7 @@
             <li class="page-item"><a href="?page=<%= nextPage%>" class="page-link"> <%= nextPage %></a></li>
          <% } %>
 
-         <% if (currentPage!==lastPage) { %>
+         <% if (currentPage!==lastPage && lastPage!==0) { %>
             <% if(lastPage!==nextPage) { %>
                 <li class="page-item"><a href="?page=<%= lastPage%>" class="page-link"> <%= lastPage %></a></li>
             <% } %>
