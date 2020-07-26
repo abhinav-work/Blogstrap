@@ -2,8 +2,10 @@ var Blog = require('../models/blog');
 var User = require('../models/user');
 const Comment = require('../models/comments')
 const { validationResult } = require('express-validator/check')
-const fileHelper = require('../utilities/file');
+const { Types } = require('mongoose');
 const ITEMS_PER_PAGE = 4;
+const WIDGET_LIMIT= 3;
+const FOOTER_LIMIT = 3;
 const bcrypt = require('bcryptjs');
 
 exports.getAddBlog = (req, res, next) => {
@@ -172,38 +174,113 @@ exports.postEditBlog = (req, res, next) => {
                 });
 };
 
-exports.getAdminBlogs = (req, res, next) => {
+exports.getAdminBlogs = async(req, res, next) => {
     const page = +req.query.page || 1;
-    var totalItems;
-    Blog.find({author: req.user})
-        .countDocuments()
-        .then(numBlogs => {
-            totalItems = numBlogs;
-           // console.log(totalItems)
-            return Blog.find({ author: req.user._id })
-                            .skip((page - 1) * ITEMS_PER_PAGE)
-                            .limit(ITEMS_PER_PAGE)  
-        })
-        .then(blog => {
-                                res.render('admin/blogs', {
-                                    blogs: blog,
-                                    pageTitle: "Admin Blogs",
-                                    totalBlogs: totalItems,
-                                        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
-                                        hasPreviousPage: page > 1,
-                                        nextPage: page + 1,
-                                        previousPage: page - 1,
-                                        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
-                                        currentPage: page,
-                                        admin: true
-                                });
-                             })
-        .catch(err => {
-                console.log(err)
-                const error = new Error(err);
-                error.httpStatusCode = 500;
-                return next(error)
-            });
+    var totalItems = await Blog.countDocuments({author: req.user});
+    const blogQuery = [
+        {
+            $lookup: {
+                from: 'comments',
+                let: {
+                    id: '$_id'
+                },
+                pipeline: [{
+                        $match: {
+                            $expr: {
+                                $and: [{
+                                    $eq: ['$post_id', '$$id']
+                                }]
+                            }
+                        }
+                    },
+                    {
+                        $group: {
+                            _id: null,
+                            count: {
+                                $sum: 1
+                            }
+                        }
+                    }
+                ],
+                as: 'postComments'
+            }
+        },
+        {
+            $unwind: {
+                path: '$postComments',
+                preserveNullAndEmptyArrays: true
+            }
+        },
+        {
+            $project: {
+                title: '$title',
+                description: '$description',
+                author_name: '$author_name',
+                updated_at: '$updated_at',
+                author: '$author',
+                image_URL: '$image_URL',
+                totalComments: {
+                    $ifNull: ['$postComments.count', 0]
+                },
+                likes: '$likes.totalQty'
+            }
+        },
+        {
+            $facet: {
+                main: [
+                     {
+                         $match: {
+                             author: Types.ObjectId(req.user._id)
+                         }
+                     }, {
+                    $sort: {
+                        'updated_at': -1
+                    }
+                }, {
+                    $skip: (page - 1) * ITEMS_PER_PAGE
+                }, {
+                    $limit: ITEMS_PER_PAGE
+                }],
+                widgets: [
+                     {
+                         $match: {
+                             author: Types.ObjectId(req.user._id)
+                         }
+                     }, {
+                    $sort: {
+                        'totalComments': -1
+                    }
+                }, {
+                    $limit: WIDGET_LIMIT
+                }],
+                footer: [{
+                        $sort: {
+                            'updated_at': -1
+                        }
+                    },
+                    {
+                        $limit: FOOTER_LIMIT
+                    }
+                ],
+            }
+        },
+    ]
+    let blogs = await Blog.aggregate(blogQuery)
+    blogs = blogs[0]
+    return res.render('admin/blogs', {
+        blogs: blogs.main,
+        widgets: blogs.widgets,
+        footer: blogs.footer,
+        pageTitle: "Admin Blogs",
+        totalBlogs: totalItems,
+        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+        hasPreviousPage: page > 1,
+        nextPage: page + 1,
+        previousPage: page - 1,
+        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
+        currentPage: page,
+        admin: true
+    });
 };
 
 exports.getEditUser = (req, res, next) => {

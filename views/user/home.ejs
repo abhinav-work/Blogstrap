@@ -1,32 +1,14 @@
 <%- include('../layouts/head.ejs') %>
-
-<!-- Bootstrap CSS-->
-<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-<!-- Custom icon font-->
-<link rel="stylesheet" href="css/fontastic.css">
-<!-- Google fonts - Open Sans-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-<!-- Fancybox-->
-<link rel="stylesheet" href="vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="css/custom.css">
-<!-- Favicon-->
-<link rel="shortcut icon" href="favicon.png">
-
-</head>
 <%- include('../layouts/nav.ejs') %>
-<body>
+
+
     <!-- Hero Section-->
     <section style="background: url(img/hero.jpg); background-size: cover; background-position: center center"
         class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
-                    <h1>On an average, five times as many people read the headline as read the body copy.
+                    <h1>On the average, five times as many people read the headline as read the body copy.
                     When you have written your headline you have spent eighty cents out of your dollar!</h1><a href="/"
                         class="hero-link">Discover More</a>
                 </div>
@@ -62,36 +44,36 @@
     <section class="featured-posts no-padding-top">
         <div class="container">
             <!-- Post-->
-            <% if(blogs.length>2) { %>
-                <% for(blog=0 ; blog<(blogs.length) && blog < 3 ; blog++ ) { %>   
+            <% if(trending.length>0) { %>
+                <% for(blog=0 ; blog<(trending.length) ; blog++ ) { %>   
                         <div class="row d-flex align-items-stretch" id="home-Posts"> 
                              <% if ((blog+1)%2==0) { %>
-                                <div  class="image col-lg-5"><img src="<%= blogs[blog].image_URL%>" alt="..."></div>
+                                <div  class="image col-lg-5"><img src="<%= trending[blog].image_URL%>" alt="..."></div>
                              <% } %>
-                            <a href="/blogs/<%= blogs[blog]._id %>" style="text-decoration: none; color:black;">
+                            <a href="/blogs/<%= trending[blog]._id %>" style="text-decoration: none; color:black;">
                             <div class="text col-lg-7" style="margin-top: 0px;">
                                 <div class="text-inner d-flex align-items-center">
                                     <div class="content">
                                         <header class="post-header">
                                             <div class="category"></div>
-                                                <h2 class="h4"><%= blogs[blog].title%></h2>
+                                                <h2 class="h4"><%= trending[blog].title%></h2>
                                             
                                         </header>
-                                        <p><%= blogs[blog].description.split(". ", 2).join(".") %>...</p>
+                                        <p><%= trending[blog].description.split(". ", 2).join(".") %>...</p>
                                         <footer class="post-footer d-flex align-items-center"><a href="#"
                                                 class="author d-flex align-items-center flex-wrap">
-                                                <div class="title"><span><%= blogs[blog].author_name%></span></div>
+                                                <div class="title"><span><%= trending[blog].author_name%></span></div>
                                             </a>
-                                            <div class="date"><i class="icon-clock"></i><%= blogs[blog].updated_at.toString().substr(blogs[blog].updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %></div>
+                                            <div class="date"><i class="icon-clock"></i><%= trending[blog].updated_at.toString().substr(trending[blog].updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %></div>
                                             <div class="comments"><i
-                                                    class="icon-comment"></i><%= blogs[blog].comments%></div>
+                                                    class="icon-comment"></i><%= trending[blog].totalComments%></div>
                                         </footer>
                                     </div>
                                 </div>
                             </div>
                             </a>
                              <% if ((blog+1)%2!=0) { %>
-                                <div class="image col-lg-5"><img src="<%= blogs[blog].image_URL%>" alt="..."></div>
+                                <div class="image col-lg-5"><img src="<%= trending[blog].image_URL%>" alt="..."></div>
                             <% } %>
                 
                         </div>
@@ -117,22 +99,22 @@
         <div class="container">
             <header>
                 <h2>Latest posts from the Blogstrap</h2>
-                <p class="text-big">Hurry up, be the amongst the first ones!</p>
+                <p class="text-big"> Got to stay updated with the posts. </p>
             </header>
             <div class="row">
-                 <% if(blogs.sort(function(a, b){return b.created_at - a.created_at}).length>2) { %>
-                      <% for(blog=0 ; blog<(blogs.length) && blog < 3 ; blog++ ) { %>
-                        <div class="post col-md-4"  id="home-Posts">
-                            <div class="post-thumbnail"><a href="/blogs/<%= blogs[blog]._id %>"><img src="<%= blogs[blog].image_URL %>" alt="..."
+                 <% if(latest.length>0) { %>
+                      <% for(blog=0 ; blog<(latest.length) ; blog++ ) { %>
+                        <div class="post col-md-4"  id="home-Posts" >
+                            <div class="post-thumbnail"><a href="/blogs/<%= latest[blog]._id %>"><img src="<%= latest[blog].image_URL %>" alt="..."
                                         class="img-fluid"></a></div>
                             <div class="post-details">
                                 <div class="post-meta d-flex justify-content-between">
-                                    <div class="date"><%= blogs[blog].updated_at.toString().substr(blogs[blog].updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" | ") %></div>
+                                    <div class="date"><%= latest[blog].updated_at.toString().substr(latest[blog].updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" | ") %></div>
                                     <div class="category"><a href="#"></a></div>
-                                </div><a href="/blogs/<%= blogs[blog]._id %>">
-                                    <h3 class="h4"><%= blogs[blog].title%></h3>
+                                </div><a href="/blogs/<%= latest[blog]._id %>">
+                                    <h3 class="h4"><%= latest[blog].title%></h3>
                                 </a>
-                                <p class="text-muted"><%= blogs[blog].description.split(".", 3).join(". ") %></p>
+                                <p class="text-muted"><%= latest[blog].description.split(".", 3).join(". ") %></p>
                             </div>
                         </div>
                     <% } %>
@@ -162,7 +144,7 @@
             </div>
         </div>
     </section>
-    <%- include('../layouts/foot.ejs') %>
+    <%- include('../layouts/foot.ejs', {blogs: footer}) %>
 
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>

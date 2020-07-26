@@ -19,85 +19,92 @@
     <div class="container">
       <div class="row">
         <!-- Latest Posts -->
-         
+           <input type="hidden" name="_csrf" value="<%= csrfToken%>" id="_csrf">
         <main class="post blog-post col-lg-8">
           <div class="container">
             <div class="post-single">
-      
+
               <div class="post-thumbnail"><img src="<%= blog.image_URL %>" alt="..." class="img-fluid"></div>
               <div class="post-details">
                 <div class="post-meta d-flex justify-content-between">
-                  
+
                 </div>
                 <h1> <%= blog.title %> <a href="#"></a>
-                  <i id="likeID" class=" <%= like=='true' ? 'fa fa-thumbs-up active' : 'fa fa-thumbs-up' %> " style="font-size: 36px;" onclick="likeFunction(this, <%= like%>)"> </i>
+                  <i id="likeID" class=" <%= like=='true' ? 'fa fa-thumbs-up active' : 'fa fa-thumbs-up' %> "
+                    style="font-size: 36px;" onclick="likeFunction(this, <%= like%>)"> </i>
                 </h1>
                 <div class="post-footer d-flex align-items-center flex-column flex-sm-row">
-                    <div class="title" style="font-size: 14px;"><span style="margin-top: 1px;"> <%= blog.author_name%></span></div>
+                  <div class="title" style="font-size: 14px;"><span style="margin-top: 1px;">
+                      <%= blog.author_name%></span></div>
                   <div class="d-flex align-items-center flex-wrap">
-                    <div class="date"><i class="icon-clock"></i> <%= blog.updated_at.toString().substr(blog.updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %> </div>
-                    <div class="views"><i class="like-icon"></i> <span id="likeCount"style="margin-left: 12px; margin-top: 2px;"> <%= blog.likes.totalQty %> </span> </div>
-                    <div class="comments meta-last"><i class="icon-comment"></i> <%= blog.comments%> </div>
+                    <div class="date"><i class="icon-clock"></i>
+                      <%= blog.updated_at.toString().substr(blog.updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %>
+                    </div>
+                    <div class="views"><i class="like-icon"></i> <span id="likeCount"
+                        style="margin-left: 12px; margin-top: 2px;"> <%= blog.likes %> </span> </div>
+                    <div class="comments meta-last"><i class="icon-comment"></i> <%= blog.totalComments%> </div>
                   </div>
                 </div>
                 <div class="post-body">
                   <p class="lead"> <%= blog.description%> </p>
-                    <% if(blog.quote) { %>
-                      <blockquote class="blockquote">
-                        <p> <%= blog.quote %> </p>
-                        <footer class="blockquote-footer">By
-                          <cite title="Source Title"><%= blog.quoteAuthor%></cite>
-                        </footer>
-                      </blockquote>
-                      <% } %>
+                  <% if(blog.quote) { %>
+                  <blockquote class="blockquote">
+                    <p> <%= blog.quote %> </p>
+                    <footer class="blockquote-footer">By
+                      <cite title="Source Title"><%= blog.quoteAuthor%></cite>
+                    </footer>
+                  </blockquote>
+                  <% } %>
                   <p> </p>
-                </div>  
-                 
+                </div>
+
                 <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row"><a
-                    href="/blogs/<%= blogs[prevBlog]._id %>" class="prev-post text-left d-flex align-items-center">
+                    href="/blogs/<%= prevBlog._id %>" class="prev-post text-left d-flex align-items-center">
                     <div class="icon prev"><i class="fa fa-angle-left" style="font-size: 22px;"></i></div>
                     <div class="text"><strong class="text-primary">Previous Post </strong>
-                      <h6> <%= blogs[prevBlog].title %> </h6>
+                      <h6> <%= prevBlog.title %> </h6>
                     </div>
                   </a>
 
-                  <a href="/blogs/<%= blogs[nextBlog]._id %>" class="next-post text-right d-flex align-items-center justify-content-end">
+                  <a href="/blogs/<%= nextBlog._id %>"
+                    class="next-post text-right d-flex align-items-center justify-content-end">
                     <div class="text"><strong class="text-primary">Next Post </strong>
-                      <h6> <%= blogs[nextBlog].title %> </h6>
+                      <h6> <%= nextBlog.title %> </h6>
                     </div>
                     <div class="icon next"><i class="fa fa-angle-right" style="font-size: 22px;"> </i></div>
                   </a></div>
                 <div class="post-comments">
                   <header>
-                    <h3 class="h6" style="font-weight: bolder;">Posted Comments<span class="no-of-comments">(<%= blog.comments%>)</span></h3>
+                    <h3 class="h6" style="font-weight: bolder;">Posted Comments<span
+                        class="no-of-comments">(<%= blog.totalComments%>)</span></h3>
                   </header>
-                  
-                  <% if (comments.length>0) { %>
-                    <% for (comment of comments) { %>
-                      <div class="comment">
-                        <div class="comment-header d-flex justify-content-between">
-                          <div class="user d-flex align-items-center">
-                            <div class="title"><strong style="font-size: 16px; color: rgba(0, 0, 0, 0.664);"> <%= comment.commented_by.email %> </strong>
-                              <span class="date" style="font-size: 14px; margin-bottom: 2px;"> <%= comment.updated_at.toString().substr(comment.updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="comment-body" style="margin-left: 0px;">
-                          <p> <%= comment.comments%> </p>
+
+                 <% if (blog.comments.length>0) { %>
+                  <% for (comment of blog.comments) { %>
+                  <div class="comment">
+                    <div class="comment-header d-flex justify-content-between">
+                      <div class="user d-flex align-items-center">
+                        <div class="title"><strong style="font-size: 16px; color: rgba(0, 0, 0, 0.664);">
+                            <%= comment.commented_by.email %> </strong>
+                          <span class="date" style="font-size: 14px; margin-bottom: 2px;">
+                            <%= comment.updated_at.toString().substr(comment.updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %></span>
                         </div>
                       </div>
-                      <% } %> 
-                    <% } %>
+                    </div>
+                    <div class="comment-body" style="margin-left: 0px;">
+                      <p> <%= comment.comments%> </p>
+                    </div>
+                  </div>
+                  <% } %>
+                 <% } %>
                 </div>
-                
-                  <% if(isAuthenticated) { %>
+               <% if(isAuthenticated) { %>
                      <form class="product-form" action="/admin/post-comment" method="POST" enctype="multipart/form-data">
                       <div class="add-comment">
                         <header>
                           <h3 class="h6"> Leave a reply </h3>
                         </header>
                           <div class="row">
-
                             <div class="form-group col-md-12">
                               <textarea name="usercomment" id="usercomment" placeholder="Type your comment"
                                 class="form-control"></textarea>
@@ -111,19 +118,17 @@
                           </div>
   
                       </div>    
-
                   <% } %>
               </div>
             </div>
             
           </div>
         </main>
-             <%- include('../layouts/widget-bar.ejs', {blogs: blogs}) %>
+             <%- include('../layouts/widget-bar.ejs', {blogs: widgets}) %>
       </form>
    
     </div>
     </div>
-<%- include('../layouts/foot.ejs') %>
-<script type="text/javascript" src='/js/admin.js'> </script> 
 
-
+<%- include('../layouts/foot.ejs',  {blogs: footer}) %>
+ <script type="text/javascript" src='/js/admin.js'> </script>

@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row">
                     <!-- post -->
-                    <% if(blogs.sort(function(a, b){return b.updated_at - a.updated_at}).length > 0) { %>
+                    <% if(blogs.length > 0) { %>
                     <% for (blog of blogs) { %>
                    
                         <div class="post col-xl-6" id="postCol">
@@ -30,7 +30,7 @@
                                 <div class="title" style="font-size: 14px;"><span > <%= blog.author_name%></span></div>
                                         <div class="date"><i class="icon-clock"></i><%= blog.updated_at.toString().substr(blog.updated_at.toString().indexOf(' ')+1).split(' ', 3).join(" ") %> </div>
                                         <div class="comments meta-last"><i class="like-icon"></i> <span
-                                                style="margin-left: 12px; margin-top: 2px;"> <%= blog.likes.totalQty %>
+                                                style="margin-left: 12px; margin-top: 2px;"> <%= blog.likes %>
                                             </span>
                                         </div>
                                 </footer>
@@ -55,11 +55,11 @@
             </div>
         </main>
         <!--Side Bar -->
-        <%- include('../layouts/widget-bar.ejs', {blogs: blogs}) %>
+        <%- include('../layouts/widget-bar.ejs', {blogs: widgets}) %>
 
     </div>
 </div>
-<%- include('../layouts/foot.ejs') %>
+<%- include('../layouts/foot.ejs', {blogs: footer}) %>
 <script type="text/javascript" src='/js/admin.js'> </script>
 
 

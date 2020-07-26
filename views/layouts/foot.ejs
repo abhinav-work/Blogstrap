@@ -3,28 +3,28 @@
     <div class="row">
         <div class="mix col-lg-3 col-md-3 col-sm-6">
             <div class="item"><a href="img/gallery-1.jpg" data-fancybox="gallery" class="image"><img
-                        src="img/gallery-1.jpg" alt="..." class="img-fluid">
+                        src="/img/gallery-1.jpg" alt="..." class="img-fluid">
                     <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
                     </div>
                 </a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
             <div class="item"><a href="img/gallery-2.jpg" data-fancybox="gallery" class="image"><img
-                        src="img/gallery-2.jpg" alt="..." class="img-fluid">
+                        src="/img/gallery-2.jpg" alt="..." class="img-fluid">
                     <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
                     </div>
                 </a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
             <div class="item"><a href="img/gallery-3.jpg" data-fancybox="gallery" class="image"><img
-                        src="img/gallery-3.jpg" alt="..." class="img-fluid">
+                        src="/img/gallery-3.jpg" alt="..." class="img-fluid">
                     <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
                     </div>
                 </a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
             <div class="item"><a href="img/gallery-4.jpg" data-fancybox="gallery" class="image"><img
-                        src="img/gallery-4.jpg" alt="..." class="img-fluid">
+                        src="/img/gallery-4.jpg" alt="..." class="img-fluid">
                     <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
                     </div>
                 </a></div>
@@ -66,8 +66,8 @@
             </div>
             <div class="col-md-4">
                 <div class="latest-posts">
-                    <% if(blogs.sort(function(a, b){return b.created_at - a.created_at}).length>2) { %>
-                    <% for(blog=0 ; blog<(blogs.length) && blog < 3 ; blog++ ) { %>
+                    <% if(blogs.length>0) { %>
+                    <% for(blog=0 ; blog<(blogs.length) ; blog++ ) { %>
                     <a href="/blogs/<%= blogs[blog]._id %>">
                         <div class="post d-flex align-items-center" id="home-Posts">
                             <div class="image"><img src="<%= blogs[blog].image_URL%>" alt="..." class="img-fluid">
